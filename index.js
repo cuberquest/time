@@ -10,12 +10,14 @@ function decode(time) {
   htz = h - new Date().getTimezoneOffset() / 60,
   ms = time - s * 1000;
   return `${
-    `${htz % 12}`.padStart(2, "0")
+    `${htz % 12 || 12}`.padStart(2, "0")
   }:${
     `${m % 60}`.padStart(2, "0")
   }:${
     `${s % 60}`.padStart(2, "0")
   }.${
     `${ms}`.padStart(3, "0")
-  }`;
+  }${
+    htz < 12 ? "a":"p"
+  }m`;
 }
